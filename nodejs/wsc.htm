@@ -1,0 +1,71 @@
+<html>
+<head>
+<title>socketio_client</title>
+<script src="http://localhost/socket.io/socket.io.js"></script>
+<script>
+// Create SocketIO instance, connect
+//var socket = new io.Socket('localhost',{
+//	port: 8080
+//});
+//socket.connect(); 
+var txt = "";
+
+var socket = io.connect("http://localhost");
+// Add a connect listener
+
+socket.on('connect', function () {
+    OutCnsl('Client has connected to the server!');
+    OutCnsl('yourID:' + socket.socket.transport.sessid);
+    OutCnsl('connectionType:' + socket.socket.transport.name);
+
+    var d = document.getElementById("Button1");
+    d.disabled = false;
+
+//    console.log('Client has connected to the server!');
+});
+// Add a connect listener
+
+socket.on('message',function(data) {
+	OutCnsl('Recv. ' + data);
+//	console.log('>',data);
+});
+// Add a disconnect listener
+
+socket.on('disconnect',function() {
+	OutCnsl('The client has disconnected!' + socket.socket.transport.sessid);
+//	console.log('The client has disconnected!');
+});
+
+// Sends a message to the server via sockets
+function sendMessageToServer(message) {
+	OutCnsl("Send. " + message );
+	socket.send( message);
+}
+
+//pushbutton
+function pushButton() {
+    var d = document.getElementById("Text1");
+    var msg = d.value;
+
+    sendMessageToServer(msg);
+    d.value = "";
+}
+
+function OutCnsl(msg){
+	txt += msg + "<br>"
+
+	var d = document.getElementById("cnsl");
+	d.innerHTML = txt;
+}
+
+</script>
+
+</head>
+<body>
+<div id="cnsl">
+
+</div>
+text<input type="text" id = "Text1" />
+<button id = "Button1" onClick="pushButton();" disabled = true >Send</button>
+</body>
+</html>

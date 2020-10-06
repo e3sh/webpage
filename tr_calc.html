@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>16進10進変換</title>
+<script>
+function test(){
+
+	var outstr = "";
+	var str = document.getElementById("inp").value.toUpperCase();
+	var reg = new RegExp("[0-9A-F]");
+
+	for (var i=0; i< str.length ; i++){
+		var ws = str.charAt(i).match(reg);
+	
+		if (ws) outstr += ws;
+	}
+
+	document.getElementById("dsp_e").innerHTML = "有効文字:" + outstr;
+	document.getElementById("dsp_r").innerHTML = "変換結果:" + parseInt("0x"+ outstr);
+}
+
+</script>
+</head>
+<body>
+16進10進変換<hr>
+入力欄:
+<input type="text" id="inp" style="ime-mode:disabled" onKeyUp="test()" ><br>
+<p id="dsp_e"></p>
+<hr>
+<p id="dsp_r"></p>
+<hr>
+
+</body>
+</html>
