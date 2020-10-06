@@ -9,7 +9,8 @@ http://www006.upp.so-net.ne.jp/esh/
 
 
 ひさびさに自作プログラムを動作確認してみたら、
-requestAnimationFlameが30FPSになってるから、
+requestAnimationFlameが30FPSになることがある状態になってるから、
+（なんか実行するPCによって変わるし）
 各プログラムのレンダリングタイミングを
 実時間に合わせるようにしないといけない…
 
